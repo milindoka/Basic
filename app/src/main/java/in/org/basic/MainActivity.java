@@ -5,19 +5,28 @@ import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.os.Environment;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 
+import java.io.File;
+import java.io.FileOutputStream;
+
 public class MainActivity extends AppCompatActivity {
 
     String internalexaminer="Default";
+    ExaminersBills EB = new ExaminersBills();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +70,15 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
 
+        if (id == R.id.Int_ExaminerBill_Pdf)
+        {
+//            OpenDialog();
+//            EB.CreateInternalPDF();
+            CreateInternalPDF();
+            return true;
+        }
+
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -93,6 +111,38 @@ public class MainActivity extends AppCompatActivity {
 
         alert.show();
     }
+
+    String rootDir;
+
+    void CreateInternalPDF()
+    {
+        rootDir = Environment.getExternalStorageDirectory().getPath();
+        String pdfFileNameWithPath = rootDir + "/"  + "New.pdf";
+
+        try {
+            Document doc = new Document();
+            doc = new Document(PageSize.A4);
+            doc.setMargins(40, 25, 30, 5);
+
+            File pdfFile =new File(pdfFileNameWithPath);
+            PdfWriter docWriter = PdfWriter.getInstance(doc, new FileOutputStream(pdfFile));
+//            PdfContentByte pcb = docWriter.getDirectContent();
+            doc.open();
+
+            Paragraph P3 = new Paragraph("Name : Shri/Smt/Miss" + "  "  );   //   + "  "  + MA.internalname);
+
+            doc.add(P3);
+
+            doc.close();
+//            Msg.Show("From CreatePDF, in ExminersBill class",MA);
+
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
 
 
 }

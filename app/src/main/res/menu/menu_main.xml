@@ -7,4 +7,11 @@
         android:orderInCategory="100"
         android:title="@string/action_settings"
         app:showAsAction="never" />
+
+    <item
+        android:id="@+id/Int_ExaminerBill_Pdf"
+        android:orderInCategory="100"
+        android:title="Internal Examiner Bill Pdf"
+        app:showAsAction="never" />
+
 </menu>
