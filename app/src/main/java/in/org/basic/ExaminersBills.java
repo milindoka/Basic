@@ -57,7 +57,7 @@ public class ExaminersBills {
 //            PdfContentByte pcb = docWriter.getDirectContent();
             doc.open();
 
-            Paragraph P3 = new Paragraph("Name : Shri/Smt/Miss" + "  "  );   //   + "  "  + MA.internalname);
+            Paragraph P3 = new Paragraph("Name : Shri/Smt/Miss" + "  " + MA.examSubject );   //   + "  "  + MA.internalname);
 
             doc.add(P3);
 
