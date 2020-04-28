@@ -39,6 +39,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+//    MSG msg = new MSG();
     String examSubject="", examYear = "";
     String Subject, Year;
     ExaminersBills EB = new ExaminersBills();
@@ -88,16 +89,6 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-/*
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, examSubject, Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-*/
     }
 
 
@@ -132,45 +123,6 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
 
     }
-
-/*    private void OpenDialog()
-    {
-        AlertDialog.Builder alert = new AlertDialog.Builder(this);
-
-        alert.setTitle("Title");
-        alert.setMessage("Message");
-
-// Set an EditText view to get user input
-        final EditText input = new EditText(this);
-        input.setText(examSubject);
-        alert.setView(input);
-
-
-        final Dialog dialog = new Dialog(this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        dialog.setTitle("Internal Examiner Details");
-        dialog.setCancelable(false);
-        dialog.setContentView(R.layout.examdetails);
-
-
-        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int whichButton) {
-                examSubject = input.getText().toString();
-                // Do something with value!
-                SaveToFile();
-
-            }
-        });
-
-        alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int whichButton) {
-                // Canceled.
-            }
-        });
-
-        alert.show();
-    }
-*/
 
     private void OpenDialog(){
 
@@ -284,7 +236,7 @@ public class MainActivity extends AppCompatActivity {
         String FileNameWithPath="";
         FileNameWithPath = "/sdcard/"; // Environment.getExternalStorageDirectory().getAbsolutePath();
 
-        FileNameWithPath += "RemBill.rmb";
+        FileNameWithPath += examSubject + " RemBill.rmb";
 
         //  EditText Internalname = (EditText) findViewById(R.id.ExaminerName);
 
@@ -373,6 +325,7 @@ public class MainActivity extends AppCompatActivity {
 
             {
                 ExamRelatedDetails.add(DataRow);
+                Toast.makeText(this,  ExamRelatedDetails.get(1),Toast.LENGTH_SHORT).show();
             }
 
             myReader.close();
@@ -387,3 +340,52 @@ public class MainActivity extends AppCompatActivity {
 
 
 }
+
+/*    private void OpenDialog()
+    {
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+
+        alert.setTitle("Title");
+        alert.setMessage("Message");
+
+// Set an EditText view to get user input
+        final EditText input = new EditText(this);
+        input.setText(examSubject);
+        alert.setView(input);
+
+
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        dialog.setTitle("Internal Examiner Details");
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.examdetails);
+
+
+        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                examSubject = input.getText().toString();
+                // Do something with value!
+                SaveToFile();
+
+            }
+        });
+
+        alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                // Canceled.
+            }
+        });
+
+        alert.show();
+    }
+*/      // Old soendialog function
+/*
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, examSubject, Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+*/      // Floating ActionButton - fab function
