@@ -1,6 +1,7 @@
 package in.org.basic;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
@@ -13,7 +14,6 @@ import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
                 // Do something in response to button click
 
                 OpenFileDialog();
-                LoadFile(fylenemwithpsth);
+//                LoadFile(fylenemwithpsth);
                 Snackbar.make(view, examSubject, Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
 
@@ -275,14 +275,15 @@ public class MainActivity extends AppCompatActivity {
         //OpenNow=false;
         String rootDir= Environment.getExternalStorageDirectory().getPath();
         List<String> listItems = new ArrayList<String>();
-        File mfile=new File(rootDir);
-        File[] list=mfile.listFiles();
+        File myfile=new File(rootDir);
+        File[] list= myfile.listFiles();
         String tempupper;
-        for(int i=0;i<mfile.listFiles().length;i++)
+        for(int i=0; i< myfile.listFiles().length; i++)
         {
             tempstr=list[i].getAbsolutePath();
 //            tempupper=tempstr.toUpperCase();
 //            if(tempupper.endsWith(".RMB") )
+
             if(tempstr.endsWith(".rmb")){
                 listItems.add(list[i].getAbsolutePath());
             }
@@ -292,18 +293,16 @@ public class MainActivity extends AppCompatActivity {
 
         android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
         builder.setTitle("Select File To Open...");
-        builder.setItems(items, new DialogInterface.OnClickListener()
-
-        {
-            public void onClick(DialogInterface dialog, int item)
-            {String ttt= (String) items[item];
-//                LoadFile(ttt);
-                //               show(ttt);
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int item) {
+                String selected = (String) items[item];
+                LoadFile(selected);
+//                Toast.makeText(MainActivity.this, selected,Toast.LENGTH_SHORT).show();
             }
         });
-
-        android.app.AlertDialog alert = builder.create();
+        AlertDialog alert = builder.create();
         alert.show();
+
     }
 
     void LoadFile(String fylenamewithpath){
@@ -325,7 +324,7 @@ public class MainActivity extends AppCompatActivity {
 
             {
                 ExamRelatedDetails.add(DataRow);
-                Toast.makeText(this,  ExamRelatedDetails.get(1),Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this,  ExamRelatedDetails.get(1),Toast.LENGTH_SHORT).show();
             }
 
             myReader.close();
