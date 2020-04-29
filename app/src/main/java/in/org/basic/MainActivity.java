@@ -44,6 +44,10 @@ public class MainActivity extends AppCompatActivity {
     String Subject, Year;
     ExaminersBills EB = new ExaminersBills();
     Button ExamDetails, LoadButton ;
+
+    String E01, E02, E03, E04, E05, E06, E07, E08, E09, E10, E11, E12;
+    String E13, E14, E15, E16, E17, E18, E19, E20;
+
     String subject;
     ArrayList<String> ExamRelatedDetails = new ArrayList<>();
 
@@ -65,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                 // Do something in response to button click
 
                 OpenFileDialog();
-//                LoadFile(fylenemwithpsth);
+                LoadFile(fylenemwithpsth);
                 Snackbar.make(view, examSubject, Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
 
@@ -326,6 +330,13 @@ public class MainActivity extends AppCompatActivity {
                 ExamRelatedDetails.add(DataRow);
 //                Toast.makeText(this,  ExamRelatedDetails.get(1),Toast.LENGTH_SHORT).show();
             }
+                examSubject = ExamRelatedDetails.get(0);
+                examYear = ExamRelatedDetails.get(1);
+
+            Toast.makeText(this,  examSubject,Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,  examYear,Toast.LENGTH_SHORT).show();
+
+//                examYear = ExamRelatedDetails.get(2);
 
             myReader.close();
 
